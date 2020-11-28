@@ -4,13 +4,19 @@ import subprocess
 from shlex import quote
 
 def install(packages):
-    pacman("-S",packages)
+    yay("-S",packages)
 
 def search(packages):
-    pacman("-Ss",packages)
+    yay("-Ss",packages)
 
-def pacman(flags,pkgs):
-    cmd=["yay","--sudoloop",flags]
+def refresh():
+    yay("-Sy")
+
+def update():
+    yay("-Syu")
+
+def yay(flags,pkgs):
+    exe=["yay","--sudoloop",flags]
     for s in pkgs:
         cmd+=[s]
     subprocess.run(cmd)
